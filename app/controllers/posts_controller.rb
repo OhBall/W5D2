@@ -8,18 +8,10 @@ class PostsController < ApplicationController
   end 
   
   def create
-    debugger
     @post = Post.new(post_params)
     @post.author_id = current_user.id 
     if @post.save
-      begin
-        @post.sub_ids = post_sub_id_params
-        redirect_to post_url(@post)
-      rescue ActiveRecord::RecordNotFound => e
-        @post.delete
-        flash.now[:errors] = [e.message]
-        render :new
-      end
+      redirect_to post_url(@post)
     else
       @subs = Sub.all
       flash.now[:errors] = @post.errors.full_messages
@@ -54,12 +46,7 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title, :url, :content)
-  end
-  
-  def post_sub_id_params
-    params[:post][:sub_ids]
-    # params.require(:post).permit(:sub_ids)
+    params.require(:post).permit(:title, :url, :content, sub_ids: [])
   end
   
   def ensure_author

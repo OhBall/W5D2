@@ -16,6 +16,7 @@ class Post < ApplicationRecord
     class_name: :User
     
   has_many :post_subs,
+    inverse_of: :post,
     foreign_key: :post_id,
     class_name: :PostSub
     
