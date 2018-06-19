@@ -1,0 +1,13 @@
+<h1>Edit Post</h1>
+<a href="<%= sub_post_url(@post.sub_id, @post) %>">Back to <%=@post.title %></a>
+<form class="" action="<%= post_url %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="patch">
+  <label for="Title">Title</label>
+  <input id="Title" type="text" name="post[title]" value="<%= @post.title if @post %>">
+  <label for="URL">URL</label>
+  <input id="URL" type="text" name="post[url]" value="<%= @post.url if @post %>">
+  <label for="Content">Content</label>
+  <input id="Content" type="text" name="post[content]" value="<%= @post.content if @post %>">
+  <input type="submit" name="" value="Update Post">
+</form>

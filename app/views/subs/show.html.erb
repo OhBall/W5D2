@@ -1,0 +1,13 @@
+<h1><%= @sub.title %></h1>
+<h3><%= @sub.description %></h1>  
+<a href="<%= subs_url %>">Back to All Subs</a>
+<br>
+<a href="<%= new_sub_post_url(@sub) %>">Make a Post</a> 
+<br>
+<a href="<%= edit_sub_url(@sub) %>">Edit Sub</a>
+
+<h3>Posts</h3>
+<% @sub.posts.each do |post|  %>
+  <a href="<%= sub_post_url(@sub, post) %>"><%= post.title %></a>
+  <br>
+<% end %>

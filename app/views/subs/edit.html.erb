@@ -1,0 +1,11 @@
+<h1>Edit Sub</h1>
+<a href="<%= sub_url(@sub) %>">Back to <%= @sub.title %></a>
+<form class="" action="<%= sub_url(@sub) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <%= auth_token %>
+  <label for="Title">Title</label>
+  <input id="Title" type="text" name="sub[title]" value="<%= @sub.title if @sub %>">
+  <label for="Description">Description</label>
+  <input id="Description" type="text" name="sub[description]" value="<%= @sub.description if @sub %>">
+  <input type="submit" name="" value="Submit">
+</form>
