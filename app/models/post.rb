@@ -6,15 +6,20 @@
 #  title     :string           not null
 #  url       :string
 #  content   :string
-#  sub_id    :integer          not null
-#  author_id :string           not null
+#  author_id :integer          not null
 #
 
 class Post < ApplicationRecord
   validates :title, presence: true
   
-  belongs_to :sub
-  
   belongs_to :author,
     class_name: :User
+    
+  has_many :post_subs,
+    foreign_key: :post_id,
+    class_name: :PostSub
+    
+  has_many :subs,
+    through: :post_subs,
+    source: :sub
 end

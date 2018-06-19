@@ -2,8 +2,7 @@
 <h1><%= @post.url %></h1>
 <h1><%= @post.content %></h1>
 
-<a href="<%= sub_url(@post.sub_id) %>">Back to <%= @post.sub.title %></a>
-<br>
+
 
 <a href="<%= edit_post_url(@post) %>">Edit Post</a>
 <form class="" action="<%= post_url(@post) %>" method="post">
@@ -11,6 +10,12 @@
   <input type="hidden" name="_method" value="delete">
   <input type="submit" name="" value="Delete This Post">
 </form>
+
+<h3>Subs:</h3>
+<% @post.subs.each do |sub| %>
+  <a href="<%= sub_url(sub) %>"><%= sub.title %></a>
+  <br>
+<% end %>
 
 
 
